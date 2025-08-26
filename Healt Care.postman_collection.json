@@ -1,0 +1,643 @@
+{
+	"info": {
+		"_postman_id": "71d8d453-7ae5-42cc-bb0a-3cc0ccf83656",
+		"name": "Healt Care",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38675905"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "get all data user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ADMIN_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{healtcare}}/user/",
+							"host": [
+								"{{healtcare}}"
+							],
+							"path": [
+								"user",
+								""
+							],
+							"query": [
+								{
+									"key": "searchTerm",
+									"value": "saurav",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "user@gmail.com",
+									"disabled": true
+								},
+								{
+									"key": "role",
+									"value": "DOCTOR",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "sortBy",
+									"value": "email",
+									"disabled": true
+								},
+								{
+									"key": "sortOrder",
+									"value": "asc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ADMIN_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "postman-cloud:///1efae7c6-e2c7-4600-a430-d0cdc53de047"
+								},
+								{
+									"key": "data",
+									"value": "{\n    \"password\": \"123456\",\n    \"admin\": {\n        \"name\": \"saurav1\",\n        \"email\": \"saurav1@gmail.com\",\n        \"contactNumber\": \"01518643073\"\n    }\n}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{healtcare}}/user/create-admin",
+							"host": [
+								"{{healtcare}}"
+							],
+							"path": [
+								"user",
+								"create-admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updated status",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ADMIN_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"status\": \"ACTIVE\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{healtcare}}/user/c71ccc88-2343-4e98-b0cf-3c87e236864d/status",
+							"host": [
+								"{{healtcare}}"
+							],
+							"path": [
+								"user",
+								"c71ccc88-2343-4e98-b0cf-3c87e236864d",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create doctor",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ADMIN_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/HP/Downloads/pngtree-young-afro-professional-doctor-png-image_13227671.png"
+								},
+								{
+									"key": "data",
+									"value": "{\n    \"password\": \"doctor123\",\n    \"doctor\": {\n        \"name\": \"Dr. S. Karim\",\n        \"email\": \"karim@gmail.com\",\n        \"contactNumber\": \"01712345678\",\n        \"address\": \"House 42, Road 7, Dhanmondi, Dhaka\",\n        \"registrationNumber\": \"BMD123456\",\n        \"exprience\": 8,\n        \"gender\": \"MALE\",\n        \"appointmentFree\": 1200,\n        \"quelification\": \"MBBS, FCPS\",\n        \"currentWorkingPlace\": \"Dhaka Medical College\"\n    }\n}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{healtcare}}/user/create-doctor",
+							"host": [
+								"{{healtcare}}"
+							],
+							"path": [
+								"user",
+								"create-doctor"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create patient",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ADMIN_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/HP/Downloads/ernering-pasient.jpg"
+								},
+								{
+									"key": "data",
+									"value": "{\n    \"password\": \"patient123\",\n    \"patient\": {\n        \"name\": \"Tania Rahman\",\n        \"email\": \"tania@gmail.com\",\n        \"contactNumber\": \"01876543210\",\n        \"address\": \"Flat B2, 3rd Floor, Green Road, Dhaka\"\n    }\n}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{healtcare}}/user/create-patient",
+							"host": [
+								"{{healtcare}}"
+							],
+							"path": [
+								"user",
+								"create-patient"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get user profile",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ADMIN_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{healtcare}}/user/me",
+							"host": [
+								"{{healtcare}}"
+							],
+							"path": [
+								"user",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updated my profile",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ADMIN_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": []
+								},
+								{
+									"key": "data",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{healtcare}}/user/update-my-profile",
+							"host": [
+								"{{healtcare}}"
+							],
+							"path": [
+								"user",
+								"update-my-profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "admin",
+			"item": [
+				{
+					"name": "get all data admin",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ADMIN_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{healtcare}}/admin/",
+							"host": [
+								"{{healtcare}}"
+							],
+							"path": [
+								"admin",
+								""
+							],
+							"query": [
+								{
+									"key": "searchTerm",
+									"value": "user",
+									"disabled": true
+								},
+								{
+									"key": "email",
+									"value": "user@gmail.com",
+									"disabled": true
+								},
+								{
+									"key": "contactNumber",
+									"value": "01518643073",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "sortBy",
+									"value": "name",
+									"disabled": true
+								},
+								{
+									"key": "sortOrder",
+									"value": "asc",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ADMIN_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{healtcare}}/admin/5ad9fa86-8655-44ac-85bc-d96ad6ef833c",
+							"host": [
+								"{{healtcare}}"
+							],
+							"path": [
+								"admin",
+								"5ad9fa86-8655-44ac-85bc-d96ad6ef833c"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updated data",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"user\",\r\n    \"contactNumber\":\"01708099925\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{healtcare}}/admin/9e3adf91-3372-4b11-b64a-6f80afcaafdf",
+							"host": [
+								"{{healtcare}}"
+							],
+							"path": [
+								"admin",
+								"9e3adf91-3372-4b11-b64a-6f80afcaafdf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleted data",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"saurav sarkar\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{healtcare}}/admin/d7f9c06a-915d-432c-acdc-7cdbf41065b2",
+							"host": [
+								"{{healtcare}}"
+							],
+							"path": [
+								"admin",
+								"d7f9c06a-915d-432c-acdc-7cdbf41065b2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "soft deleted",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{healtcare}}/admin/soft/f9f31efa-2bd5-4803-90c0-47cff79cd4c7",
+							"host": [
+								"{{healtcare}}"
+							],
+							"path": [
+								"admin",
+								"soft",
+								"f9f31efa-2bd5-4803-90c0-47cff79cd4c7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "loginUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"sauravsarkar.developer@gmail.com\",\r\n    \"password\": \"abc123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{healtcare}}/auth/login",
+							"host": [
+								"{{healtcare}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refesh Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{healtcare}}/auth/refesh-token",
+							"host": [
+								"{{healtcare}}"
+							],
+							"path": [
+								"auth",
+								"refesh-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{ADMIN_TOKEN}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\": \"123456\",\r\n    \"newPassword\": \"654321\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{healtcare}}/auth/change-password",
+							"host": [
+								"{{healtcare}}"
+							],
+							"path": [
+								"auth",
+								"change-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forget password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"sauravsarkar.developer@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{healtcare}}/auth/forget-password",
+							"host": [
+								"{{healtcare}}"
+							],
+							"path": [
+								"auth",
+								"forget-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset-password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhdXJhdnNhcmthci5kZXZlbG9wZXJAZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzUzMjYyMDI4LCJleHAiOjE3NTMyNjIzMjh9.6Qfs8JGgsts4BXkw0b0-5TgZsIBJ-Fcyj25lj3-bHLs",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"64528c0b-f4bd-412e-a99d-107c196f38d5\",\r\n    \"password\":\"abc123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{healtcare}}/auth/reset-password",
+							"host": [
+								"{{healtcare}}"
+							],
+							"path": [
+								"auth",
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "ADMIN_TOKEN",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhdXJhdnNhcmthci5kZXZlbG9wZXJAZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiaWF0IjoxNzU0ODM3NDI2LCJleHAiOjE3NTQ5MjM4MjZ9.U1meWisxCGCRzo9phV8pr54upQeq33C1TR4BJiDplCw",
+			"type": "string"
+		}
+	]
+}

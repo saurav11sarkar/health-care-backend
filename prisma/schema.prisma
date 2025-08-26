@@ -1,0 +1,169 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN
+  DOCTOR
+  PATIENT
+}
+
+enum UserStatus {
+  ACTIVE
+  BLOCKED
+  DELETED
+}
+
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
+
+enum BloodGroup {
+  A_POSITIVE
+  A_NEGATIVE
+  B_POSITIVE
+  B_NEGATIVE
+  AB_POSITIVE
+  AB_NEGATIVE
+  O_POSITIVE
+  O_NEGATIVE
+}
+
+enum MaritalStatus {
+  MARRIED
+  UNMARRIED
+}
+
+model User {
+  id                 String     @id @default(uuid())
+  email              String     @unique
+  password           String
+  role               UserRole   @default(ADMIN)
+  needPasswordChange Boolean    @default(true)
+  status             UserStatus @default(ACTIVE)
+  createdAt          DateTime   @default(now())
+  updatedAt          DateTime   @updatedAt
+  admin              Admin?
+  doctor             Doctor?
+  patient            Patient?
+
+  @@map("users")
+}
+
+model Admin {
+  id            String   @id @default(uuid())
+  name          String
+  email         String   @unique
+  contactNumber String
+  profilePhoto  String?
+  isDeleted     Boolean  @default(false)
+  user          User     @relation(fields: [email], references: [email])
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@map("admins")
+}
+
+model Doctor {
+  id                  String              @id @default(uuid())
+  name                String
+  email               String              @unique
+  contactNumber       String
+  profilePhoto        String?
+  address             String?
+  registrationNumber  String
+  exprience           Int                 @default(0)
+  gender              Gender
+  appointmentFree     Int
+  quelification       String?
+  currentWorkingPlace String?
+  isDeleted           Boolean             @default(false)
+  user                User                @relation(fields: [email], references: [email])
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+  doctorSpecialties   DoctorSpecialties[]
+
+  @@map("doctors")
+}
+
+model Patient {
+  id                String             @id @default(uuid())
+  name              String
+  email             String             @unique
+  contactNumber     String
+  profilePhoto      String?
+  address           String?
+  isDeleted         Boolean            @default(false)
+  user              User               @relation(fields: [email], references: [email])
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+  patientHealthData PatientHealthData?
+  medicalReports    MedicalReports[]
+
+  @@map("patients")
+}
+
+model Specialties {
+  id                String              @id @default(uuid())
+  title             String
+  icon              String
+  doctorSpecialties DoctorSpecialties[]
+
+  @@map("specialties")
+}
+
+model DoctorSpecialties {
+  specialtiesId String
+  specielties   Specialties @relation(fields: [specialtiesId], references: [id])
+  doctorId      String
+  doctor        Doctor      @relation(fields: [doctorId], references: [id])
+
+  @@id([specialtiesId, doctorId])
+  @@map("doctor_specialties")
+}
+
+model PatientHealthData {
+  id                  String        @id @default(uuid())
+  patientId           String        @unique
+  patient             Patient       @relation(fields: [patientId], references: [id])
+  gender              Gender
+  dataOfBirth         String
+  bloodGroup          BloodGroup
+  hasAllergy          Boolean
+  hasDiabetes         Boolean
+  height              String
+  weight              String
+  smokingStatus       Boolean
+  dietaryPreference   String?
+  pregnancyStatus     Boolean
+  maltalHealthHistory String?
+  immunizationStatus  String
+  hasPastSurgeries    Boolean
+  recentAnxiety       Boolean
+  recentDepression    Boolean
+  maritalStatus       MaritalStatus
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+
+  @@map("patient_health_data")
+}
+
+model MedicalReports {
+  id         String   @id @default(uuid())
+  patientId  String
+  patient    Patient  @relation(fields: [patientId], references: [id])
+  reportName String
+  reportLink String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("medical_reports")
+}
