@@ -33,7 +33,20 @@ const getPatienById = catchAsycn(async (req, res) => {
   });
 });
 
+const updatePatien = catchAsycn(async (req, res) => {
+  const id = req.params.id;
+  const result = await patienService.updatePatien(id, req.body);
+
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: "Patien updated successfully",
+    data: result,
+  });
+});
+
 export const patienController = {
   getAllPatien,
   getPatienById,
+  updatePatien,
 };

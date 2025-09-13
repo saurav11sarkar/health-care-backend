@@ -1,3 +1,4 @@
+import { Patient } from "@prisma/client";
 import pagination, { IOption } from "../../../helper/pagenation";
 import prisma from "../../../shared/prisma";
 
@@ -60,7 +61,23 @@ const getPatienById = async (id: string) => {
   return result;
 };
 
+const updatePatien = async (id: string, payload: Partial<Patient>) => {
+  await prisma.patient.findUniqueOrThrow({
+    where: { id },
+  });
+  const result = await prisma.patient.update({
+    where: { id },
+    data: payload,
+    include: {
+      medicalReports: true,
+      patientHealthData: true,
+    },
+  });
+  return result;
+};
+
 export const patienService = {
   getAllPatien,
   getPatienById,
+  updatePatien,
 };
