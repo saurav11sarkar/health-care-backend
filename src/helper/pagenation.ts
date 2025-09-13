@@ -1,4 +1,4 @@
-interface IOption {
+export interface IOption {
   page?: number;
   limit?: number;
   sortBy?: string;
